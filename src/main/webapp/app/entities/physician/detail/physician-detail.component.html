@@ -1,0 +1,52 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="physician">
+      <h2 data-cy="physicianDetailsHeading"><span jhiTranslate="jhipsterSampleApplicationApp.physician.detail.title">Physician</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ physician.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.physician.physicianId">Physician Id</span></dt>
+        <dd>
+          <span>{{ physician.physicianId }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.physician.name">Name</span></dt>
+        <dd>
+          <span>{{ physician.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.physician.created">Created</span></dt>
+        <dd>
+          <span>{{ physician.created | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.physician.modified">Modified</span></dt>
+        <dd>
+          <span>{{ physician.modified | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.physician.createdBy">Created By</span></dt>
+        <dd>
+          <span>{{ physician.createdBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.physician.modifiedBy">Modified By</span></dt>
+        <dd>
+          <span>{{ physician.modifiedBy }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/physician', physician.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

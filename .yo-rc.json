@@ -42,7 +42,9 @@
     "jwtSecretKey": "ODBmMzE1MDExYmJjODU0YmQ5MzIxNzE4NTVkZDBjZjI2MTFjZjI1YmRhYmRiZDg3Zjg0MjViZWI3MzljZTZkMWJiZWZiYmZjZWZiZjVlZDM1YzkyZmUwY2NjN2VhZTgxYWExOTYyNjIxYTAzMDQ2Y2UzZWQyODE3ZjI5YTViMjc=",
     "clientTheme": "none",
     "clientThemeVariant": "",
-    "reactive": false
+    "reactive": false,
+    "entities": ["Patient", "Physician", "Visit", "Holiday", "Billing"],
+    "lastLiquibaseTimestamp": 1622145308000
   },
   "git-provider": "GitHub",
   "git-company": "bhanukarandeniya",
