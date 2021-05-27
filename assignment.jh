@@ -1,0 +1,65 @@
+
+entity Patient {
+	patientId String required,
+    name String required,
+    dob LocalDate required,
+    gender Integer required,
+    created LocalDate required,
+    modified LocalDate,
+    createdBy Integer required
+}
+
+entity Physician {
+	physicianId String required,
+    name String required,
+    created LocalDate required,
+    modified LocalDate,
+    createdBy Integer required,
+    modifiedBy Integer required
+}
+
+// an ignored comment
+/** not an ignored comment */
+
+entity Visit {
+    visitDateTime LocalDate required,
+    reason String required,
+    created LocalDate required,
+    modified LocalDate,
+    createdBy Integer required,
+    modifiedBy Integer required
+}
+
+entity Holiday {
+    visitDateTime LocalDate required,
+    reason String required,
+    created LocalDate required,
+    modified LocalDate,
+    createdBy Integer required,
+    modifiedBy Integer required
+}
+
+entity Billing {
+	visitId Integer required,
+    patientId String ,
+    physicianId String required,
+    billed LocalDate required
+}
+
+
+relationship OneToMany {
+	Patient to Visit{patientId},
+    Physician to Visit{physicianId}
+}
+
+// Set pagination options
+paginate Patient, Physician, Visit  with pagination
+
+// Use Data Transfer Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+
+// Set an angular suffix
+// angularSuffix * with mySuffix

@@ -1,0 +1,64 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="visit">
+      <h2 data-cy="visitDetailsHeading"><span jhiTranslate="jhipsterSampleApplicationApp.visit.detail.title">Visit</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ visit.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.visit.visitDateTime">Visit Date Time</span></dt>
+        <dd>
+          <span>{{ visit.visitDateTime | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.visit.reason">Reason</span></dt>
+        <dd>
+          <span>{{ visit.reason }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.visit.created">Created</span></dt>
+        <dd>
+          <span>{{ visit.created | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.visit.modified">Modified</span></dt>
+        <dd>
+          <span>{{ visit.modified | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.visit.createdBy">Created By</span></dt>
+        <dd>
+          <span>{{ visit.createdBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.visit.modifiedBy">Modified By</span></dt>
+        <dd>
+          <span>{{ visit.modifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.visit.patientId">Patient Id</span></dt>
+        <dd>
+          <div *ngIf="visit.patientId">
+            <a [routerLink]="['/patient', visit.patientId?.id, 'view']">{{ visit.patientId?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.visit.physicianId">Physician Id</span></dt>
+        <dd>
+          <div *ngIf="visit.physicianId">
+            <a [routerLink]="['/physician', visit.physicianId?.id, 'view']">{{ visit.physicianId?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/visit', visit.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

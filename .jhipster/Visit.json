@@ -1,0 +1,59 @@
+{
+  "name": "Visit",
+  "fields": [
+    {
+      "fieldName": "visitDateTime",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "reason",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "created",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "modified",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "createdBy",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "modifiedBy",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "patient",
+      "otherEntityRelationshipName": "visit",
+      "relationshipName": "patientId"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "physician",
+      "otherEntityRelationshipName": "visit",
+      "relationshipName": "physicianId"
+    }
+  ],
+  "javadoc": "not an ignored comment",
+  "entityTableName": "visit",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210527195506"
+}

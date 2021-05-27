@@ -1,0 +1,124 @@
+<div>
+  <h2 id="page-heading" data-cy="VisitHeading">
+    <span jhiTranslate="jhipsterSampleApplicationApp.visit.home.title">Visits</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="jhipsterSampleApplicationApp.visit.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-visit"
+        [routerLink]="['/visit/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="jhipsterSampleApplicationApp.visit.home.createLabel"> Create a new Visit </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="visits?.length === 0">
+    <span jhiTranslate="jhipsterSampleApplicationApp.visit.home.notFound">No visits found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="visits && visits.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="visitDateTime">
+            <span jhiTranslate="jhipsterSampleApplicationApp.visit.visitDateTime">Visit Date Time</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="reason">
+            <span jhiTranslate="jhipsterSampleApplicationApp.visit.reason">Reason</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="created">
+            <span jhiTranslate="jhipsterSampleApplicationApp.visit.created">Created</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="modified">
+            <span jhiTranslate="jhipsterSampleApplicationApp.visit.modified">Modified</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdBy">
+            <span jhiTranslate="jhipsterSampleApplicationApp.visit.createdBy">Created By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="modifiedBy">
+            <span jhiTranslate="jhipsterSampleApplicationApp.visit.modifiedBy">Modified By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="patientId.id">
+            <span jhiTranslate="jhipsterSampleApplicationApp.visit.patientId">Patient Id</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="physicianId.id">
+            <span jhiTranslate="jhipsterSampleApplicationApp.visit.physicianId">Physician Id</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let visit of visits; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/visit', visit.id, 'view']">{{ visit.id }}</a>
+          </td>
+          <td>{{ visit.visitDateTime | formatMediumDate }}</td>
+          <td>{{ visit.reason }}</td>
+          <td>{{ visit.created | formatMediumDate }}</td>
+          <td>{{ visit.modified | formatMediumDate }}</td>
+          <td>{{ visit.createdBy }}</td>
+          <td>{{ visit.modifiedBy }}</td>
+          <td>
+            <div *ngIf="visit.patientId">
+              <a [routerLink]="['/patient', visit.patientId?.id, 'view']">{{ visit.patientId?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="visit.physicianId">
+              <a [routerLink]="['/physician', visit.physicianId?.id, 'view']">{{ visit.physicianId?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/visit', visit.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/visit', visit.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(visit)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="visits && visits.length > 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

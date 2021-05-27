@@ -1,0 +1,113 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-billing-heading"
+        data-cy="BillingCreateUpdateHeading"
+        jhiTranslate="jhipsterSampleApplicationApp.billing.home.createOrEditLabel"
+      >
+        Create or edit a Billing
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.billing.visitId" for="field_visitId">Visit Id</label>
+          <input type="number" class="form-control" name="visitId" id="field_visitId" data-cy="visitId" formControlName="visitId" />
+          <div *ngIf="editForm.get('visitId')!.invalid && (editForm.get('visitId')!.dirty || editForm.get('visitId')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('visitId')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('visitId')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.billing.patientId" for="field_patientId"
+            >Patient Id</label
+          >
+          <input type="text" class="form-control" name="patientId" id="field_patientId" data-cy="patientId" formControlName="patientId" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.billing.physicianId" for="field_physicianId"
+            >Physician Id</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="physicianId"
+            id="field_physicianId"
+            data-cy="physicianId"
+            formControlName="physicianId"
+          />
+          <div *ngIf="editForm.get('physicianId')!.invalid && (editForm.get('physicianId')!.dirty || editForm.get('physicianId')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('physicianId')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.billing.billed" for="field_billed">Billed</label>
+          <div class="input-group">
+            <input
+              id="field_billed"
+              data-cy="billed"
+              type="text"
+              class="form-control"
+              name="billed"
+              ngbDatepicker
+              #billedDp="ngbDatepicker"
+              formControlName="billed"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="billedDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+            </span>
+          </div>
+          <div *ngIf="editForm.get('billed')!.invalid && (editForm.get('billed')!.dirty || editForm.get('billed')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('billed')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

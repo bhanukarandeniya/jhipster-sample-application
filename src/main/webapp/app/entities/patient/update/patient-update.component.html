@@ -1,0 +1,173 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-patient-heading"
+        data-cy="PatientCreateUpdateHeading"
+        jhiTranslate="jhipsterSampleApplicationApp.patient.home.createOrEditLabel"
+      >
+        Create or edit a Patient
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.patient.patientId" for="field_patientId"
+            >Patient Id</label
+          >
+          <input type="text" class="form-control" name="patientId" id="field_patientId" data-cy="patientId" formControlName="patientId" />
+          <div *ngIf="editForm.get('patientId')!.invalid && (editForm.get('patientId')!.dirty || editForm.get('patientId')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('patientId')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.patient.name" for="field_name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+          <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.patient.dob" for="field_dob">Dob</label>
+          <div class="input-group">
+            <input
+              id="field_dob"
+              data-cy="dob"
+              type="text"
+              class="form-control"
+              name="dob"
+              ngbDatepicker
+              #dobDp="ngbDatepicker"
+              formControlName="dob"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="dobDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+            </span>
+          </div>
+          <div *ngIf="editForm.get('dob')!.invalid && (editForm.get('dob')!.dirty || editForm.get('dob')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('dob')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.patient.gender" for="field_gender">Gender</label>
+          <input type="number" class="form-control" name="gender" id="field_gender" data-cy="gender" formControlName="gender" />
+          <div *ngIf="editForm.get('gender')!.invalid && (editForm.get('gender')!.dirty || editForm.get('gender')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('gender')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('gender')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.patient.created" for="field_created">Created</label>
+          <div class="input-group">
+            <input
+              id="field_created"
+              data-cy="created"
+              type="text"
+              class="form-control"
+              name="created"
+              ngbDatepicker
+              #createdDp="ngbDatepicker"
+              formControlName="created"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="createdDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+            </span>
+          </div>
+          <div *ngIf="editForm.get('created')!.invalid && (editForm.get('created')!.dirty || editForm.get('created')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('created')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.patient.modified" for="field_modified"
+            >Modified</label
+          >
+          <div class="input-group">
+            <input
+              id="field_modified"
+              data-cy="modified"
+              type="text"
+              class="form-control"
+              name="modified"
+              ngbDatepicker
+              #modifiedDp="ngbDatepicker"
+              formControlName="modified"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="modifiedDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.patient.createdBy" for="field_createdBy"
+            >Created By</label
+          >
+          <input type="number" class="form-control" name="createdBy" id="field_createdBy" data-cy="createdBy" formControlName="createdBy" />
+          <div *ngIf="editForm.get('createdBy')!.invalid && (editForm.get('createdBy')!.dirty || editForm.get('createdBy')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('createdBy')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('createdBy')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

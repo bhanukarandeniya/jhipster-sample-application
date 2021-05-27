@@ -1,0 +1,29 @@
+{
+  "jhipsterSampleApplicationApp": {
+    "holiday": {
+      "home": {
+        "title": "Holidays",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Holiday",
+        "createOrEditLabel": "Create or edit a Holiday",
+        "notFound": "No Holidays found"
+      },
+      "created": "A new Holiday is created with identifier {{ param }}",
+      "updated": "A Holiday is updated with identifier {{ param }}",
+      "deleted": "A Holiday is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Holiday {{ id }}?"
+      },
+      "detail": {
+        "title": "Holiday"
+      },
+      "id": "ID",
+      "visitDateTime": "Visit Date Time",
+      "reason": "Reason",
+      "created": "Created",
+      "modified": "Modified",
+      "createdBy": "Created By",
+      "modifiedBy": "Modified By"
+    }
+  }
+}

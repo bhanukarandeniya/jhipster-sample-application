@@ -1,0 +1,30 @@
+{
+  "jhipsterSampleApplicationApp": {
+    "physician": {
+      "home": {
+        "title": "Physicians",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Physician",
+        "createOrEditLabel": "Create or edit a Physician",
+        "notFound": "No Physicians found"
+      },
+      "created": "A new Physician is created with identifier {{ param }}",
+      "updated": "A Physician is updated with identifier {{ param }}",
+      "deleted": "A Physician is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Physician {{ id }}?"
+      },
+      "detail": {
+        "title": "Physician"
+      },
+      "id": "ID",
+      "physicianId": "Physician Id",
+      "name": "Name",
+      "created": "Created",
+      "modified": "Modified",
+      "createdBy": "Created By",
+      "modifiedBy": "Modified By",
+      "visit": "Visit"
+    }
+  }
+}
